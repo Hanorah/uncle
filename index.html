@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        p {
+            text-indent: 50px;
+            font-weight: 500;
+
+        }
+
+        h1 {
+            font-weight: 200;
+        }
+
+        body {
+            margin: 0;
+            background: radial-gradient(circle, rgba(238, 174, 174, 1) 0%, rgba(21, 3, 85, 1) 100%);
+            animation: gradient-animation 8s ease infinite;
+            background-size: 150% 150%;
+        }
+
+        /* Keyframes for animating gradient colors */
+        @keyframes gradient-animation {
+            0% {
+                background: radial-gradient(circle, rgba(238, 174, 174, 1) 0%, rgba(21, 3, 85, 1) 100%);
+            }
+
+            50% {
+                background: radial-gradient(circle, rgba(255, 150, 150, 1) 0%, rgba(50, 0, 120, 1) 100%);
+            }
+
+            100% {
+                background: radial-gradient(circle, rgba(238, 174, 174, 1) 0%, rgba(21, 3, 85, 1) 100%);
+            }
+        }
+
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: shown;
+        }
+
+        .heart {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            text-align: center;
+            transform: translate(-50%, -50%);
+            transiton: transform 2s;
+            z-index: 1;
+        }
+
+        .heart>img {
+            width: 50px;
+            height: auto;
+        }
+
+        .message {
+            padding: 20px;
+            background-color: #ffffff;
+            min-width: 80%;
+            height: 85%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            overflow: hidden;
+            animation-name: openmsg;
+            animation-duration: 2s;
+            animation-timing-function: linear;
+            animation-play-state: paused;
+            animation-fill-mode: forwards;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+            border-radius: 5px;
+        }
+
+        .heart>img:hover {
+            animation-name: beat;
+            animation-duration: 2s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-play-state: running;
+        }
+
+        #messageState {}
+
+        @keyframes beat {
+            0% {
+                width: 50px;
+            }
+
+            25% {
+                width: 58px;
+            }
+
+            30% {
+                width: 50px;
+            }
+
+            50% {
+                width: 45px;
+            }
+
+            60% {
+                width: 50px;
+            }
+
+            75% {
+                width: 58px;
+            }
+
+            100% {
+                width: 50px;
+            }
+        }
+
+        @keyframes openmsg {
+            0% {
+                height: 0px;
+                padding: 0px 20px;
+            }
+
+            100% {
+                height: 75%;
+                padding: 20px 20px;
+            }
+        }
+
+        @keyframes heartMove {
+            0% {
+                top: 50%
+            }
+
+            100% {
+                top: 85%;
+                transform: translate(-50%, 0);
+            }
+        }
+
+        .openNor {
+            animation-direction: normal;
+            animation-play-state: running;
+        }
+
+        .closeNor {
+            animation-direction: reverse;
+            animation-play-state: running;
+        }
+
+        .no-anim {
+            animation: none;
+        }
+
+        .closed {
+            height: 0px;
+            padding: 0px 20px;
+        }
+
+        .bottom {
+            bottom: 5px;
+        }
+
+        .openHer {
+            animation-name: heartMove;
+            animation-duration: 2s;
+            animation-timing-function: linear;
+            animation-play-state: running;
+            animation-fill-mode: forwards;
+        }
+
+        .closeHer {
+            animation-name: heartMove;
+            animation-duration: 2s;
+            animation-timing-function: linear;
+            animation-play-state: running;
+            animation-direction: reverse;
+            animation-fill-mode: forwards;
+        }
+
+        .beating>img {
+            animation-name: beat;
+            animation-duration: 2s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-play-state: running;
+        }
+
+        .openedHer {
+            top: 85%;
+            transform: translate(-50%, 0);
+        }
+
+        .pretty-red-button {
+            background-color: #ff0400;
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .pretty-red-button:hover {
+            background-color: #d32f2f;
+        }
+
+        .pretty-red-button:focus {
+            outline: none;
+            box-shadow: 0 0 5px #d32f2f;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <label>
+            <div class="heart">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Love_Heart_SVG.svg"></img>
+            </div>
+            <input id="messageState" type="checkbox" style="display:none" />
+        </label>
+        <div class="message">
+            <div class='text'>
+                <strong>
+                    Dear Uncle Mo,
+                </strong>
+                <p style="font-style: italic;">
+                    This is Norah. I hope you are having a good day today! didnt mean to disturb but just need a
+                    few minutes of your time,
+                </p>
+                <p style="font-style: italic;"> First of all, I want to start by saying I'm sorry. Yesterday, we had a
+                    little
+                    misunderstanding, and it was my fault. I didn’t even realize how annoying and selfish my
+                    character was,
+                    and I was still angry at you just because you didn’t do what I wanted. It's like I just
+                    expect you to do
+                    my bidding as if you're a dummy or you don't have your own feelings and emotions. It’s crazy
+                    how I
+                    always thought I
+                    had good character and was mature, but in reality, I’m as childish as it gets.</p>
+
+                <p style="font-style: italic;">I say whatever comes to my head, and I say I don’t care about you all the
+                    time on a whim. I
+                    basically do
+                    whatever I want. I don’t even know how you managed to deal with my crazy character because
+                    I’m pretty
+                    sure if I were in your shoes, I would have given up a long time ago.</p>
+
+                <p style="font-style: italic;">You make time for me, you send me money, and you always listen to my
+                    problems. If I gave you
+                    a dollar for
+                    every hour you've spent with me, I’m pretty sure you could buy a BMW with that money. But
+                    instead of
+                    being grateful for the people in my life, I am always arguing and needing more, more, and
+                    more. And when
+                    you said I’m insatiable, I got angry, but that’s actually the truth.</p>
+
+                <p style="font-style: italic;">It’s never going to be enough for me, no matter what I get. I’ll still
+                    want more. It wasn’t
+                    until this
+                    morning that I thought about what you said and realized you were so right. It’s not just you
+                    either;
+                    it’s like I have this weird sense of self-importance that makes me think my emotions are the
+                    only thing
+                    that matters. I don’t think of other people, and I’m sorry I’m such a horrible person
+                    without even
+                    knowing it.</p>
+
+                <p style="font-style: italic;">You deserve so much more than taking this from me, so I’m really sorry. I
+                    know I won't change
+                    overnight
+                    because I’ll probably do it again, but in this moment where I know I’m wrong, please try to
+                    forgive me.
+                </p>
+                <p class='sincerely' style="font-style: italic;">
+                    Sincerely, Norah </p>
+                <a href="next.html"> <button class="pretty-red-button">Next</button></a>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        $("#messageState").on("change", (x) => {
+            $(".message").removeClass("openNor").removeClass("closeNor");
+            if ($("#messageState").is(":checked")) {
+                $(".message").removeClass("closed").removeClass("no-anim").addClass("openNor");
+                $(".heart").removeClass("closeHer").removeClass("openedHer").addClass("openHer");
+                $(".container").stop().animate({ "backgroundColor": "#f48fb1" }, 2000);
+                console.log("Abrindo");
+            } else {
+                $(".message").removeClass("no-anim").addClass("closeNor");
+                $(".heart").removeClass("openHer").removeClass("openedHer").addClass("closeHer");
+                $(".container").stop().animate({ "backgroundColor": "#fce4ec" }, 2000);
+                console.log("fechando");
+            }
+        });
+
+        $(".message").on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function (e) {
+            console.log("Animation End");
+            if ($(".message").hasClass("closeNor"))
+                $(".message").addClass("closed");
+            $(".message").removeClass("openNor").removeClass("closeNor").addClass("no-anim");
+        });
+
+        $(".heart").on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function (e) {
+            console.log("Animation End");
+            if (!$(".heart").hasClass("closeHer"))
+                $(".heart").addClass("openedHer").addClass("beating");
+            else
+                $(".heart").addClass("no-anim").removeClass("beating");
+            $(".heart").removeClass("openHer").removeClass("closeHer");
+        });
+    </script>
+</body>
+
+</html>

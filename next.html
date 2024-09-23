@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgive Me</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Helvetica, sans-serif;
+        }
+
+        #btn-group,
+        h1,
+        h5 {
+            text-align: center;
+            padding: 5px;
+        }
+
+        h1 {
+            color: #944E63;
+        }
+
+        h5 {
+            color: #B47B84;
+        }
+
+        h2 {
+            text-align: center;
+            color: #B47B84;
+            padding: 5px;
+        }
+
+        button {
+            width: 60px;
+            height: 25px;
+            border: 1.5px solid #B47B84;
+            background: #FFE7E7;
+            color: #B47B84;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            min-height: 300px;
+            min-width: 300px;
+        }
+
+        .box {
+            background-color: #ffff;
+            height: 300px;
+            width: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+        }
+
+        .tenor-gif-embed {
+            height: 150px;
+        }
+
+        #box1 {
+            z-index: 1;
+        }
+    </style>
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div id="box1" class="box">
+            <div>
+                <dotlottie-player src="https://lottie.host/afc63738-5ecc-4cc5-96a1-d881fcf2229e/eSycuNW2of.json"
+                    background="transparent" speed="1" style="width: 300px; height: 300px;" loop
+                    autoplay></dotlottie-player>
+                <h1>Do you forgive me?</h1>
+                <h5>~ PS: I'm still your baby girl, remember?</h5>
+                <div id="btn-group">
+                    <button type="button" onClick="boxFunYes()">Yes</button>
+                    <button type="button" onClick="boxFunNo()">No</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="box5" class="box">
+            <div>
+                <div class="tenor-gif-embed" data-postid="9177323695663858864"><a
+                        href="https://tenor.com/search/bears+with+kisses-stickers">Bears With Kisses Stickers</a></div>
+                <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+                <h1>Hehehehe,</h1>
+                <h2>I knew it!</h2>
+            </div>
+        </div>
+
+        <div id="boxNo" class="box">
+            <div>
+                <h1>But I'm sorry</h1>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function boxFunYes() {
+            document.getElementById("box5").style.zIndex = "1";
+        }
+
+        function boxFunNo() {
+            document.getElementById("boxNo").style.zIndex = "1";
+        }
+    </script>
+</body>
+
+</html>
