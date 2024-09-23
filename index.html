@@ -67,7 +67,7 @@
             padding: 20px;
             background-color: #ffffff;
             min-width: 80%;
-            height: 150%;
+            height: 100%;
             position: absolute;
             left: 50%;
             top: 50%;
@@ -146,6 +146,7 @@
             }
         }
 
+
         .openNor {
             animation-direction: normal;
             animation-play-state: running;
@@ -217,6 +218,18 @@
         .pretty-red-button:focus {
             outline: none;
             box-shadow: 0 0 5px #d32f2f;
+        }
+
+        @keyframes openmsg {
+            0% {
+                height: 0px;
+                padding: 0px 20px;
+            }
+
+            100% {
+                height: 75%;
+                padding: 20px 20px;
+            }
         }
     </style>
 </head>
